@@ -4,74 +4,187 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta charset="UTF-8">
   <title>Golf Comrade</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link href="/Users/brian/GolfComrade/default.css" type="text/css" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 <body>
-  <h1 align="center">Golf Comrade<h1>
-    <div>
+  <div class="container-fluid">
+    <div class="row">
+      <h1 class="col-md-12 text-left h1">Golf Comrade</h1>
     </div>
-    <div class="row hide" id=login>
-      <div class="col-md-offset-5 col-md-2">
-        <form id="login">
-          <span class="input-group-btn">
-            <div clas="input-group">
-              <input class="form-control" id="email" type="text" name="email" placeholder="Email">
-              <input class="form-control" id="password" type="text" name="password" placeholder="Password">
-              <button id="login-button" class="btn btn-success" value="submit" type="button">Login</button>
-            </span>
+  </div>
+  <div class="row current" id="home">
+  </div>
+  <div class="row hide" id="login">
+    <div class="row" id="login-title">
+      <h1 class="col-md-12 text-center h1">Golf Comrade</h1>
+    </div>
+    <div class="col-md-offset-4 col-md-4 panel panel-default">
+      <form id="login-form">
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="input-email">E-mail:</label>
+            <input type="email" class="form-control" id="input-email" placeholder="Email">
           </div>
-        </form>
-      </div>
-    </form>
+          <div class="form-group">
+            <label for="input-password">Password:</label>
+            <input type="password" class="form-control" id="input-password" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-primary">LOG IN</button>
+        </div>
+      </form>
+    </div>
   </div>
   <div class="row" id="new-user">
-    <div>
-      <h2 align="left">Create your Golf Comrade account</h2>
+    <div class="row" id="new-user-title">
+      <h1 class="col-md-12 text-center h1">Golf Comrade</h1>
     </div>
-    <!-- <form>
-    <span>
-    <label for="exampleInputName2">Name</label>
-    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
-  </span>
-  <div class="form-group">
-  <label for="exampleInputEmail2">Email</label>
-  <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
-</span>
-</form> -->
-
-  <form class="form-inline">
-    <span>
-      <div>
-        <label for="new-email">Name</label>
-      </div>
-      <div>
-        <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
-      </div>
-    </span>
-    <span>
-      <div>
-        <label for="exampleInputEmail2">Email</label>
-      </div>
-      <div>
-        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
-      </div>
-    </span>
-  </form>
-
-
-  <form class="form-inline">
     <div>
-      <label for="new-email">Name</label>
-        <div class="form-group">
-          <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+      <h3 class="col-md-12 text-left h3">Create your Golf Comrade account</h3>
+    </div>
+    <div>
+      <form id="new-user-form">
+        <div class="row">
+          <div class="col-md-4 form-group">
+            <label for="new-email">Email address:</label>
+            <input type="email" class="form-control" id="new-email" placeholder="Email">
+          </div>
+          <div class="col-md-4 form-group">
+            <label for="new-city">City:</label>
+            <input type="text" class="form-control" id="new-city" placeholder="City">
+          </div>
+          <div class="col-md-4">
+            <label>Birthday:</label>
+            <div>
+              <span>Month</span>
+              <span>Day</span>
+              <span>Year</span>
+            </div>
+          </div>
         </div>
-        <span>
-          <label for="exampleInputEmail2">Email</label>
-        </span>
-        <span class="form-group">
-          <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
-        </span>
+        <div class="row">
+          <div class="col-md-4 form-group">
+            <label for="new-password">Password:</label>
+            <input type="password" class="form-control" id="new-password" placeholder="Password">
+          </div>
+          <div class="col-md-4 form-group">
+            <label for="new-state">State:</label>
+            <input type="text" class="form-control" id="new-state" placeholder="State">
+          </div>
+          <div class="col-md-4">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 form-group">
+            <label for="new-first-name">First name:</label>
+            <input type="text" class="form-control" id="new-first-name" placeholder="First name">
+          </div>
+          <div class="col-md-4 form-group">
+            <label for="new-zip">Zip:</label>
+            <input type="text" class="form-control" id="new-zip" placeholder="Zip">
+          </div>
+          <div class="col-md-4">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 form-group">
+            <label for="new-last-name">Last name:</label>
+            <input type="text" class="form-control" id="new-last-name" placeholder="Last name">
+          </div>
+          <div class="col-md-4 form-group">
+            <label for="new-gender">Gender:
+              <div id="gender">
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" id="male" value="option1"> Male
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" id="female" value="option2"> Female
+                </label>
+              </div>
+            </label>
+          </div>
+          <div class="col-md-4">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 form-group">
+            <label for="new-gender">Skill level:
+              <div id="skill">
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" id="beginner" value="option1"> Beginner
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" id="intermediate" value="option2"> Intermediate
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" id="professional" value="option3"> Professional
+                </label>
+              </div>
+            </label>
+          </div>
+          <div class="col-md-4">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 form-group">
+            <label for="handicap">Handicap: </label>
+            <div id="handicap-dropdown">
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  0 <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a href="#">0</a></li>
+                  <li><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">6</a></li>
+                  <li><a href="#">7</a></li>
+                  <li><a href="#">8</a></li>
+                  <li><a href="#">9</a></li>
+                  <li><a href="#">10</a></li>
+                  <li><a href="#">11</a></li>
+                  <li><a href="#">12</a></li>
+                  <li><a href="#">13</a></li>
+                  <li><a href="#">14</a></li>
+                  <li><a href="#">15</a></li>
+                  <li><a href="#">16</a></li>
+                  <li><a href="#">17</a></li>
+                  <li><a href="#">18</a></li>
+                  <li><a href="#">19</a></li>
+                  <li><a href="#">20</a></li>
+                  <li><a href="#">21</a></li>
+                  <li><a href="#">22</a></li>
+                  <li><a href="#">23</a></li>
+                  <li><a href="#">24</a></li>
+                  <li><a href="#">25</a></li>
+                  <li><a href="#">26</a></li>
+                  <li><a href="#">27</a></li>
+                  <li><a href="#">28</a></li>
+                  <li><a href="#">29</a></li>
+                  <li><a href="#">30</a></li>
+                  <li><a href="#">31</a></li>
+                  <li><a href="#">32</a></li>
+                  <li><a href="#">33</a></li>
+                  <li><a href="#">34</a></li>
+                  <li><a href="#">35</a></li>
+                  <li><a href="#">36</a></li>
+                  <li><a href="#">37</a></li>
+                  <li><a href="#">38</a></li>
+                  <li><a href="#">39</a></li>
+                  <li><a href="#">40</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+          </div>
+        </div>
       </form>
+    </div>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js">
   </script>
