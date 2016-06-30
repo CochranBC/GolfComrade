@@ -1,12 +1,11 @@
 var loginButton = document.getElementById('login-button');
 
 loginButton.addEventListener('click', function() {
-  var email = document.getElementById('input-email');
-  var password = document.getElementById('input-password');
+  var emailInput = document.getElementById('input-email');
+  var passwordInput = document.getElementById('input-password');
   var person = {};
-  person.email = email.value;
-  person.password = password.value;
-  return person;
+  person.email = emailInput.value;
+  person.password = passwordInput.value;
 
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/user');
@@ -14,7 +13,7 @@ loginButton.addEventListener('click', function() {
   xhr.send(JSON.stringify(person));
 
   xhr.addEventListener('load', function() {
-    var userPage = docement.getElementById('user-page');
+    var userPage = document.getElementById('user-page');
     var response = JSON.parse(xhr.responseText);
     var nameDiv = document.createElement('div');
     var locationDiv = document.createElement('div');
@@ -67,15 +66,3 @@ loginButton.addEventListener('click', function() {
 
   })
 });
-
-
-
-
-
-
-
-function swap(current, next, location) {
-  var old = document.getElementsByClassName(current)[0];
-  old.classList.remove('current');
-  old.classList.add('hide');
-};

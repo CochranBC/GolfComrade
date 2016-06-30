@@ -12,7 +12,7 @@ app.get('/index.html', function (req, res) {
   res.sendFile(__dirname + '/index.html')
 });
 
-app.get('/index.html', function (req, res) {
+app.get('/default.css', function (req, res) {
   res.sendFile(__dirname + '/default.css')
 });
 
@@ -21,16 +21,17 @@ app.get('/default.js', function (req, res) {
 });
 
 app.post('/user', function (req, res) {
+  console.log(req.body);
   var match = [];
 
   golfers.forEach(function(person) {
     if (person.email == req.body.email) {
       if (person.password == req.body.password) {
-        matched.push(person);
+        match.push(person);
       }
     }
-  })
-  res.send(match);
+  });
+  res.send(match)
 });
 
 var golfers = [
@@ -43,9 +44,9 @@ var golfers = [
     state: 'British Columbia',
     zip: '92037',
     gender: 'male',
-    birthday: 'December 12 1923',
+    birthday: 'December 12, 1923',
     skill: 'Professional',
-    handicap: '3'
+    handicap: '3',
   },
   {
     firstName: 'Adam',
@@ -56,9 +57,9 @@ var golfers = [
     state: 'British Columbia',
     zip: '92037',
     gender: 'male',
-    birthday: 'September 9 1966',
+    birthday: 'September 9, 1966',
     skill: 'Intermediate',
-    handicap: '12'
+    handicap: '12',
   }
 ];
 
