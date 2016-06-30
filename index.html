@@ -4,7 +4,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta charset="UTF-8">
   <title>Golf Comrade</title>
-  <link href="/Users/brian/GolfComrade/default.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="/Users/brian/GolfComrade/default.css">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
@@ -14,9 +14,9 @@
       <h1 class="col-md-12 text-left h1">Golf Comrade</h1>
     </div>
   </div>
-  <div class="row current" id="home">
+  <div class="row" id="user-page">
   </div>
-  <div class="row hide" id="login">
+  <div class="row" id="login">
     <div class="row" id="login-title">
       <h1 class="col-md-12 text-center h1">Golf Comrade</h1>
     </div>
@@ -31,12 +31,12 @@
             <label for="input-password">Password:</label>
             <input type="password" class="form-control" id="input-password" placeholder="Password">
           </div>
-          <button type="submit" class="btn btn-primary">LOG IN</button>
+          <button type="submit" class="btn btn-primary" id="login-button">LOG IN</button>
         </div>
       </form>
     </div>
   </div>
-  <div class="row" id="new-user">
+  <div class="row hide" id="new-user">
     <div class="row" id="new-user-title">
       <h1 class="col-md-12 text-center h1">Golf Comrade</h1>
     </div>
@@ -183,6 +183,7 @@
           <div class="col-md-4">
           </div>
         </div>
+        <button type="submit" class="btn btn-primary active" id="create-account">CREATE ACCOUNT</button>
       </form>
     </div>
   </div>

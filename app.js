@@ -12,10 +12,26 @@ app.get('/index.html', function (req, res) {
   res.sendFile(__dirname + '/index.html')
 });
 
+app.get('/index.html', function (req, res) {
+  res.sendFile(__dirname + '/default.css')
+});
+
 app.get('/default.js', function (req, res) {
   res.sendFile(__dirname +  '/default.js')
 });
 
+app.post('/user', function (req, res) {
+  var match = [];
+
+  golfers.forEach(function(person) {
+    if (person.email == req.body.email) {
+      if (person.password == req.body.password) {
+        matched.push(person);
+      }
+    }
+  })
+  res.send(match);
+});
 
 var golfers = [
   {
