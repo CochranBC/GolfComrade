@@ -21,7 +21,6 @@ app.get('/default.js', function (req, res) {
 });
 
 app.post('/user', function (req, res) {
-  console.log(req.body);
   var match = [];
 
   golfers.forEach(function(person) {

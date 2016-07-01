@@ -1,3 +1,16 @@
+var homePage = document.getElementById('home');
+
+window.onload = swap('current', homePage, 'view')
+
+
+var createUser = document.getElementById('create-user');
+
+createUser.addEventListener('click', function() {
+  var newUser = document.getElementById('new-user');
+
+  swap('current', newUser, 'view')
+});
+
 var loginButton = document.getElementById('login-button');
 
 loginButton.addEventListener('click', function() {
@@ -64,5 +77,28 @@ loginButton.addEventListener('click', function() {
     userPage.appendChild(skillDiv);
     userPage.appendChild(handicapDiv);
 
+    swap('current', userPage, 'view');
+
   })
 });
+
+var loginAccess = document.getElementById('login-access');
+
+loginAccess.addEventListener('click', function() {
+  var userLogin = document.getElementById('login');
+
+  swap('current', userLogin, 'view')
+
+})
+
+
+function swap(current, next, location) {
+  var old = document.getElementsByClassName(current)[0];
+  old.classList.remove('current');
+  old.classList.add('hide');
+
+  var theLocation = document.getElementById(location);
+  theLocation.appendChild(next);
+  next.classList.add('current');
+  next.classList.remove('hide');
+}
