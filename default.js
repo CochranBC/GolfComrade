@@ -43,24 +43,34 @@ loginButton.addEventListener('click', function() {
     var userPage = document.getElementById('user-page');
     var response = JSON.parse(xhr.responseText);
     var nameDiv = document.createElement('div');
+    var container = document.createElement('div');
+    container.setAttribute('class', 'col-md-offset-1 col-md-3 panel panel-default');
+    var containerHeader = document.createElement('div');
+    containerHeader.setAttribute('class', 'panel-heading text-center');
+    var containerBody = document.createElement('div');
+    containerBody.setAttribute('class', 'panel-body text-left');
     var locationDiv = document.createElement('div');
-    locationDiv.textContent = 'Residence: '
+    locationDiv.textContent = 'Residence: ';
     var genderDiv = document.createElement('div');
-    genderDiv.textContent = 'Gender: '
+    genderDiv.textContent = 'Gender: ';
     var birthdayDiv = document.createElement('div');
-    birthdayDiv.textContent = 'Birth Date: '
+    birthdayDiv.textContent = 'Birth Date: ';
     var skillDiv = document.createElement('div');
-    skillDiv.textContent = 'Skill Level: '
+    skillDiv.textContent = 'Skill Level: ';
     var handicapDiv = document.createElement('div');
-    handicapDiv.textContent = 'Handicap: '
+    handicapDiv.textContent = 'Handicap: ';
     var forename = document.createElement('span');
+    forename.setAttribute('id', 'space');
     forename.textContent = response[0].firstName;
     var surname = document.createElement('span');
+    surname.setAttribute('id', 'space')
     surname.textContent = response[0].lastName;
     var town = document.createElement('span');
     town.textContent = response[0].city;
     var comma = document.createElement('span');
     comma.textContent = ', ';
+    var commaTwo = document.createElement('span');
+    commaTwo.textContent = ', ';
     var region = document.createElement('span');
     region.textContent = response[0].state;
     var zipcode = document.createElement('span');
@@ -69,7 +79,12 @@ loginButton.addEventListener('click', function() {
     sex.textContent = response[0].gender;
     var monthOfBirth = document.createElement('span');
     monthOfBirth.textContent = response[0].birthMonth;
-    var birthSpace = document.createElement('div');
+    var space = document.createElement('span');
+    space.innerHTML = '&nbsp';
+    var spaceTwo = document.createElement('span');
+    spaceTwo.innerHTML = '&nbsp';
+    var spaceThree = document.createElement('span');
+    spaceThree.innerHTML = '&nbsp';
     var dayOfBirth = document.createElement('span');
     dayOfBirth.textContent = response[0].birthDay;
     var yearOfBirth = document.createElement('span');
@@ -80,25 +95,30 @@ loginButton.addEventListener('click', function() {
     golfHandicap.textContent = response[0].handicap;
 
     nameDiv.appendChild(forename);
+    nameDiv.appendChild(space);
     nameDiv.appendChild(surname);
     locationDiv.appendChild(town);
     locationDiv.appendChild(comma);
     locationDiv.appendChild(region);
+    locationDiv.appendChild(spaceTwo);
     locationDiv.appendChild(zipcode);
     genderDiv.appendChild(sex);
     birthdayDiv.appendChild(monthOfBirth);
-    birthdayDiv.appendChild(birthSpace);
+    birthdayDiv.appendChild(spaceThree);
     birthdayDiv.appendChild(dayOfBirth);
-    birthdayDiv.appendChild(comma);
+    birthdayDiv.appendChild(commaTwo);
     birthdayDiv.appendChild(yearOfBirth);
     skillDiv.appendChild(competence);
     handicapDiv.appendChild(golfHandicap);
-    userPage.appendChild(nameDiv);
-    userPage.appendChild(locationDiv);
-    userPage.appendChild(genderDiv);
-    userPage.appendChild(birthdayDiv);
-    userPage.appendChild(skillDiv);
-    userPage.appendChild(handicapDiv);
+    containerHeader.appendChild(nameDiv);
+    containerBody.appendChild(locationDiv);
+    containerBody.appendChild(genderDiv);
+    containerBody.appendChild(birthdayDiv);
+    containerBody.appendChild(skillDiv);
+    containerBody.appendChild(handicapDiv);
+    container.appendChild(containerHeader);
+    container.appendChild(containerBody);
+    userPage.appendChild(container);
 
     swap('current', userPage, 'view');
 
@@ -112,7 +132,7 @@ loginAccess.addEventListener('click', function() {
 
   swap('current', userLogin, 'view')
 
-})
+});
 
 
 function swap(current, next, location) {
@@ -124,7 +144,7 @@ function swap(current, next, location) {
   theLocation.appendChild(next);
   next.classList.add('current');
   next.classList.remove('hide');
-}
+};
 
 var createUser = document.getElementById('create-account');
 
@@ -151,12 +171,11 @@ createUser.addEventListener('click', function() {
   user.state = newState.value;
   user.zip = newZip.value;
   user.gender = newGender.value;
-  user.bithMonth = birthdayMonth.value;
+  user.birthMonth = birthdayMonth.value;
   user.birthDay = birthdayDay.value;
   user.birthYear = birthdayYear.value;
   user.skill = newSkill.value;
   user.handicap = newHandicap.value;
-  console.log(user);
 
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/newGolfer');
@@ -167,24 +186,34 @@ createUser.addEventListener('click', function() {
     var userPage = document.getElementById('user-page');
     var response = JSON.parse(xhr.responseText);
     var nameDiv = document.createElement('div');
+    var container = document.createElement('div');
+    container.setAttribute('class', 'col-md-offset-1 col-md-3 panel panel-default');
+    var containerHeader = document.createElement('div');
+    containerHeader.setAttribute('class', 'panel-heading text-center');
+    var containerBody = document.createElement('div');
+    containerBody.setAttribute('class', 'panel-body text-left');
     var locationDiv = document.createElement('div');
-    locationDiv.textContent = 'Residence: '
+    locationDiv.textContent = 'Residence: ';
     var genderDiv = document.createElement('div');
-    genderDiv.textContent = 'Gender: '
+    genderDiv.textContent = 'Gender: ';
     var birthdayDiv = document.createElement('div');
-    birthdayDiv.textContent = 'Birth Date: '
+    birthdayDiv.textContent = 'Birth Date: ';
     var skillDiv = document.createElement('div');
-    skillDiv.textContent = 'Skill Level: '
+    skillDiv.textContent = 'Skill Level: ';
     var handicapDiv = document.createElement('div');
-    handicapDiv.textContent = 'Handicap: '
+    handicapDiv.textContent = 'Handicap: ';
     var forename = document.createElement('span');
+    forename.setAttribute('id', 'space');
     forename.textContent = response[0].firstName;
     var surname = document.createElement('span');
+    surname.setAttribute('id', 'space')
     surname.textContent = response[0].lastName;
     var town = document.createElement('span');
     town.textContent = response[0].city;
     var comma = document.createElement('span');
     comma.textContent = ', ';
+    var commaTwo = document.createElement('span');
+    commaTwo.textContent = ', ';
     var region = document.createElement('span');
     region.textContent = response[0].state;
     var zipcode = document.createElement('span');
@@ -193,7 +222,12 @@ createUser.addEventListener('click', function() {
     sex.textContent = response[0].gender;
     var monthOfBirth = document.createElement('span');
     monthOfBirth.textContent = response[0].birthMonth;
-    var birthSpace = document.createElement('div');
+    var space = document.createElement('span');
+    space.innerHTML = '&nbsp';
+    var spaceTwo = document.createElement('span');
+    spaceTwo.innerHTML = '&nbsp';
+    var spaceThree = document.createElement('span');
+    spaceThree.innerHTML = '&nbsp';
     var dayOfBirth = document.createElement('span');
     dayOfBirth.textContent = response[0].birthDay;
     var yearOfBirth = document.createElement('span');
@@ -204,25 +238,30 @@ createUser.addEventListener('click', function() {
     golfHandicap.textContent = response[0].handicap;
 
     nameDiv.appendChild(forename);
+    nameDiv.appendChild(space);
     nameDiv.appendChild(surname);
     locationDiv.appendChild(town);
     locationDiv.appendChild(comma);
     locationDiv.appendChild(region);
+    locationDiv.appendChild(spaceTwo);
     locationDiv.appendChild(zipcode);
     genderDiv.appendChild(sex);
     birthdayDiv.appendChild(monthOfBirth);
-    birthdayDiv.appendChild(birthSpace);
+    birthdayDiv.appendChild(spaceThree);
     birthdayDiv.appendChild(dayOfBirth);
-    birthdayDiv.appendChild(comma);
+    birthdayDiv.appendChild(commaTwo);
     birthdayDiv.appendChild(yearOfBirth);
     skillDiv.appendChild(competence);
     handicapDiv.appendChild(golfHandicap);
-    userPage.appendChild(nameDiv);
-    userPage.appendChild(locationDiv);
-    userPage.appendChild(genderDiv);
-    userPage.appendChild(birthdayDiv);
-    userPage.appendChild(skillDiv);
-    userPage.appendChild(handicapDiv);
+    containerHeader.appendChild(nameDiv);
+    containerBody.appendChild(locationDiv);
+    containerBody.appendChild(genderDiv);
+    containerBody.appendChild(birthdayDiv);
+    containerBody.appendChild(skillDiv);
+    containerBody.appendChild(handicapDiv);
+    container.appendChild(containerHeader);
+    container.appendChild(containerBody);
+    userPage.appendChild(container);
 
     swap('current', userPage, 'view');
 

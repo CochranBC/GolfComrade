@@ -43,7 +43,7 @@ app.post('/newGolfer', function (req, res) {
   newGolfer.state = req.body.state;
   newGolfer.zip = req.body.zip;
   newGolfer.gender = req.body.gender;
-  newGolfer.bithMonth = req.body.bithMonth;
+  newGolfer.birthMonth = req.body.birthMonth;
   newGolfer.birthDay = req.body.birthDay;
   newGolfer.birthYear = req.body.birthYear;
   newGolfer.skill = req.body.skill;
@@ -68,7 +68,7 @@ var golfers = [
     city: 'Pitt Meadows',
     state: 'British Columbia',
     zip: '92037',
-    gender: 'male',
+    gender: 'Male',
     birthMonth: 'December',
     birthDay: '12',
     birthYear: '1923',
@@ -83,7 +83,7 @@ var golfers = [
     city: 'Pitt Meadows',
     state: 'British Columbia',
     zip: '92037',
-    gender: 'male',
+    gender: 'Male',
     birthMonth: 'September',
     bithDay: '9',
     birthYear: '1966',
