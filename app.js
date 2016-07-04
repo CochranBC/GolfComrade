@@ -33,6 +33,22 @@ app.post('/user', function (req, res) {
   res.send(match)
 });
 
+
+
+app.post('/searchZip', function (req, res) {
+  var zipMatch = [];
+  for (var i = 0; i < golfers.length; i++) {
+    var offset = golfers[i].zip.indexOf(req.body.zip);
+    if (offset === -1) {
+    } else {
+      zipMatch.push(golfers[i])
+    }
+  }
+  res.send(zipMatch);
+  console.log(zipMatch);
+});
+
+
 app.post('/newGolfer', function (req, res) {
   var newGolfer = {};
   newGolfer.firstName = req.body.firstName;
@@ -87,6 +103,21 @@ var golfers = [
     birthMonth: 'September',
     bithDay: '9',
     birthYear: '1966',
+    skill: 'Intermediate',
+    handicap: '12',
+  },
+  {
+    firstName: 'Brian',
+    lastName: 'Cochran',
+    email: 'bcochran@gmail.com',
+    password: 'golf',
+    city: 'Irvine',
+    state: 'CA',
+    zip: '92602',
+    gender: 'Male',
+    birthMonth: 'April',
+    bithDay: '9',
+    birthYear: '1985',
     skill: 'Intermediate',
     handicap: '12',
   }
