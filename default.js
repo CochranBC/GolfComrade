@@ -41,10 +41,11 @@ loginButton.addEventListener('click', function() {
 
   xhr.addEventListener('load', function() {
     var userPage = document.getElementById('user-page');
+    var userProfile = document.getElementById('user-profile');
     var response = JSON.parse(xhr.responseText);
     var nameDiv = document.createElement('div');
     var container = document.createElement('div');
-    container.setAttribute('class', 'col-md-offset-1 col-md-3 panel panel-default');
+    container.setAttribute('class', 'panel panel-default');
     var containerHeader = document.createElement('div');
     containerHeader.setAttribute('class', 'panel-heading text-center');
     var containerBody = document.createElement('div');
@@ -118,7 +119,7 @@ loginButton.addEventListener('click', function() {
     containerBody.appendChild(handicapDiv);
     container.appendChild(containerHeader);
     container.appendChild(containerBody);
-    userPage.appendChild(container);
+    userProfile.appendChild(container);
 
     swap('current', userPage, 'view');
 
@@ -184,10 +185,11 @@ createUser.addEventListener('click', function() {
 
   xhr.addEventListener('load', function() {
     var userPage = document.getElementById('user-page');
+    var userProfile = document.getElementById('user-profile');
     var response = JSON.parse(xhr.responseText);
     var nameDiv = document.createElement('div');
     var container = document.createElement('div');
-    container.setAttribute('class', 'col-md-offset-1 col-md-3 panel panel-default');
+    container.setAttribute('class', 'panel panel-default');
     var containerHeader = document.createElement('div');
     containerHeader.setAttribute('class', 'panel-heading text-center');
     var containerBody = document.createElement('div');
@@ -261,7 +263,7 @@ createUser.addEventListener('click', function() {
     containerBody.appendChild(handicapDiv);
     container.appendChild(containerHeader);
     container.appendChild(containerBody);
-    userPage.appendChild(container);
+    userProfile.appendChild(container);
 
     swap('current', userPage, 'view');
 
