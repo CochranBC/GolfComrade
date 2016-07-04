@@ -33,6 +33,32 @@ app.post('/user', function (req, res) {
   res.send(match)
 });
 
+app.post('/newGolfer', function (req, res) {
+  var newGolfer = {};
+  newGolfer.firstName = req.body.firstName;
+  newGolfer.lastName = req.body.lastName;
+  newGolfer.email = req.body.email;
+  newGolfer.password = req.body.password;
+  newGolfer.city = req.body.city;
+  newGolfer.state = req.body.state;
+  newGolfer.zip = req.body.zip;
+  newGolfer.gender = req.body.gender;
+  newGolfer.bithMonth = req.body.bithMonth;
+  newGolfer.birthDay = req.body.birthDay;
+  newGolfer.birthYear = req.body.birthYear;
+  newGolfer.skill = req.body.skill;
+  newGolfer.handicap = req.body.handicap;
+  golfers.push(newGolfer);
+
+  var newProfile = [];
+  golfers.forEach(function(user) {
+    if (user.email == req.body.email) {
+      newProfile.push(user);
+    }
+  });
+  res.send(newProfile);
+});
+
 var golfers = [
   {
     firstName: 'Bob',
@@ -43,7 +69,9 @@ var golfers = [
     state: 'British Columbia',
     zip: '92037',
     gender: 'male',
-    birthday: 'December 12, 1923',
+    birthMonth: 'December',
+    birthDay: '12',
+    birthYear: '1923',
     skill: 'Professional',
     handicap: '3',
   },
@@ -56,7 +84,9 @@ var golfers = [
     state: 'British Columbia',
     zip: '92037',
     gender: 'male',
-    birthday: 'September 9, 1966',
+    birthMonth: 'September',
+    bithDay: '9',
+    birthYear: '1966',
     skill: 'Intermediate',
     handicap: '12',
   }

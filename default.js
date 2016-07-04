@@ -1,3 +1,17 @@
+var start = 1914;
+var end = 2014;
+var yearOption = document.getElementById('new-year');
+
+for (var s = start; s <= end; s++) {
+  var year = [s];
+  var option = document.createElement('option')
+  option.textContent = year;
+  option.value = year;
+  yearOption.appendChild(option)
+
+};
+
+
 var homePage = document.getElementById('home');
 
 window.onload = swap('current', homePage, 'view')
@@ -53,8 +67,13 @@ loginButton.addEventListener('click', function() {
     zipcode.textContent = response[0].zip;
     var sex = document.createElement('span');
     sex.textContent = response[0].gender;
-    var dateOfBirth = document.createElement('span');
-    dateOfBirth.textContent = response[0].birthday;
+    var monthOfBirth = document.createElement('span');
+    monthOfBirth.textContent = response[0].birthMonth;
+    var birthSpace = document.createElement('div');
+    var dayOfBirth = document.createElement('span');
+    dayOfBirth.textContent = response[0].birthDay;
+    var yearOfBirth = document.createElement('span');
+    yearOfBirth.textContent = response[0].birthYear;
     var competence = document.createElement('span');
     competence.textContent = response[0].skill;
     var golfHandicap = document.createElement('span');
@@ -67,7 +86,11 @@ loginButton.addEventListener('click', function() {
     locationDiv.appendChild(region);
     locationDiv.appendChild(zipcode);
     genderDiv.appendChild(sex);
-    birthdayDiv.appendChild(dateOfBirth);
+    birthdayDiv.appendChild(monthOfBirth);
+    birthdayDiv.appendChild(birthSpace);
+    birthdayDiv.appendChild(dayOfBirth);
+    birthdayDiv.appendChild(comma);
+    birthdayDiv.appendChild(yearOfBirth);
     skillDiv.appendChild(competence);
     handicapDiv.appendChild(golfHandicap);
     userPage.appendChild(nameDiv);
@@ -102,3 +125,106 @@ function swap(current, next, location) {
   next.classList.add('current');
   next.classList.remove('hide');
 }
+
+var createUser = document.getElementById('create-account');
+
+createUser.addEventListener('click', function() {
+  var newFirst = document.getElementById('new-first-name');
+  var newLast = document.getElementById('new-last-name');
+  var newEmail = document.getElementById('new-email');
+  var newPassword = document.getElementById('new-password');
+  var newCity = document.getElementById('new-city');
+  var newState = document.getElementById('new-state');
+  var newZip = document.getElementById('new-zip');
+  var newGender = document.getElementById('new-gender');
+  var birthdayMonth = document.getElementById('new-month');
+  var birthdayDay = document.getElementById('new-day');
+  var birthdayYear = document.getElementById('new-year');
+  var newSkill = document.getElementById('new-skill');
+  var newHandicap = document.getElementById('new-handicap')
+  var user = {};
+  user.firstName = newFirst.value;
+  user.lastName = newLast.value;
+  user.email = newEmail.value;
+  user.password = newPassword.value;
+  user.city = newCity.value;
+  user.state = newState.value;
+  user.zip = newZip.value;
+  user.gender = newGender.value;
+  user.bithMonth = birthdayMonth.value;
+  user.birthDay = birthdayDay.value;
+  user.birthYear = birthdayYear.value;
+  user.skill = newSkill.value;
+  user.handicap = newHandicap.value;
+  console.log(user);
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/newGolfer');
+  xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.send(JSON.stringify(user));
+
+  xhr.addEventListener('load', function() {
+    var userPage = document.getElementById('user-page');
+    var response = JSON.parse(xhr.responseText);
+    var nameDiv = document.createElement('div');
+    var locationDiv = document.createElement('div');
+    locationDiv.textContent = 'Residence: '
+    var genderDiv = document.createElement('div');
+    genderDiv.textContent = 'Gender: '
+    var birthdayDiv = document.createElement('div');
+    birthdayDiv.textContent = 'Birth Date: '
+    var skillDiv = document.createElement('div');
+    skillDiv.textContent = 'Skill Level: '
+    var handicapDiv = document.createElement('div');
+    handicapDiv.textContent = 'Handicap: '
+    var forename = document.createElement('span');
+    forename.textContent = response[0].firstName;
+    var surname = document.createElement('span');
+    surname.textContent = response[0].lastName;
+    var town = document.createElement('span');
+    town.textContent = response[0].city;
+    var comma = document.createElement('span');
+    comma.textContent = ', ';
+    var region = document.createElement('span');
+    region.textContent = response[0].state;
+    var zipcode = document.createElement('span');
+    zipcode.textContent = response[0].zip;
+    var sex = document.createElement('span');
+    sex.textContent = response[0].gender;
+    var monthOfBirth = document.createElement('span');
+    monthOfBirth.textContent = response[0].birthMonth;
+    var birthSpace = document.createElement('div');
+    var dayOfBirth = document.createElement('span');
+    dayOfBirth.textContent = response[0].birthDay;
+    var yearOfBirth = document.createElement('span');
+    yearOfBirth.textContent = response[0].birthYear;
+    var competence = document.createElement('span');
+    competence.textContent = response[0].skill;
+    var golfHandicap = document.createElement('span');
+    golfHandicap.textContent = response[0].handicap;
+
+    nameDiv.appendChild(forename);
+    nameDiv.appendChild(surname);
+    locationDiv.appendChild(town);
+    locationDiv.appendChild(comma);
+    locationDiv.appendChild(region);
+    locationDiv.appendChild(zipcode);
+    genderDiv.appendChild(sex);
+    birthdayDiv.appendChild(monthOfBirth);
+    birthdayDiv.appendChild(birthSpace);
+    birthdayDiv.appendChild(dayOfBirth);
+    birthdayDiv.appendChild(comma);
+    birthdayDiv.appendChild(yearOfBirth);
+    skillDiv.appendChild(competence);
+    handicapDiv.appendChild(golfHandicap);
+    userPage.appendChild(nameDiv);
+    userPage.appendChild(locationDiv);
+    userPage.appendChild(genderDiv);
+    userPage.appendChild(birthdayDiv);
+    userPage.appendChild(skillDiv);
+    userPage.appendChild(handicapDiv);
+
+    swap('current', userPage, 'view');
+
+  })
+});
