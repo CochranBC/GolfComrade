@@ -129,7 +129,7 @@ searchButton.addEventListener('click', function() {
   xhr.send(JSON.stringify(searchZip));
 
   xhr.addEventListener('load', function() {
-    var searchResults = document.getElementById('search-results');
+    var searchResults = document.getElementById('new-search');
     clear(searchResults);
     var response = JSON.parse(xhr.responseText);
     for (var i = 0; i < response.length; i++) {

@@ -45,7 +45,6 @@ app.post('/searchZip', function (req, res) {
     }
   }
   res.send(zipMatch);
-  console.log(zipMatch);
 });
 
 
