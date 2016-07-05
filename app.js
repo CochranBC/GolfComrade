@@ -33,6 +33,10 @@ app.post('/user', function (req, res) {
   res.send(match)
 });
 
+app.post('/allGolfers', function (req, res) {
+  res.send(golfers);
+});
+
 
 
 app.post('/searchZip', function (req, res) {
@@ -100,7 +104,7 @@ var golfers = [
     zip: '92037',
     gender: 'Male',
     birthMonth: 'September',
-    bithDay: '9',
+    birthDay: '9',
     birthYear: '1966',
     skill: 'Intermediate',
     handicap: '12',
@@ -115,7 +119,7 @@ var golfers = [
     zip: '92602',
     gender: 'Male',
     birthMonth: 'April',
-    bithDay: '9',
+    birthDay: '9',
     birthYear: '1985',
     skill: 'Intermediate',
     handicap: '12',

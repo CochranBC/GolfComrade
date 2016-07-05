@@ -49,6 +49,7 @@ loginButton.addEventListener('click', function() {
       userProfile.appendChild(golferDisplay(response[i]));
     };
 
+
     swap('current', userPage, 'view');
 
   })
@@ -133,16 +134,155 @@ searchButton.addEventListener('click', function() {
     clear(searchResults);
     var response = JSON.parse(xhr.responseText);
     for (var i = 0; i < response.length; i++) {
-      searchResults.appendChild(golferDisplay(response[i]));
+      searchResults.appendChild(golferSearch(response[i]));
     };
+
 
   })
 });
 
 function golferDisplay(data) {
   var nameDiv = document.createElement('div');
+  var spanButton = document.createElement('span');
+  var spanButtonTwo = document.createElement('span');
+  var buttonDiv = document.createElement('div');
+  var allGolfers = document.createElement('button');
+  allGolfers.setAttribute('class', 'btn btn-primary');
+  allGolfers.setAttribute('type', 'button');
+  allGolfers.setAttribute('id', 'all-golfers');
+  allGolfers.textContent = 'View All Golfers';
+
+  allGolfers.addEventListener('click', function () {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/allGolfers');
+    xhr.send();
+
+    xhr.addEventListener('load', function () {
+      var response = JSON.parse(xhr.responseText);
+      var searchResults = document.getElementById('new-search');
+      clear(searchResults);
+      for (var i = 0; i < response.length; i++) {
+        searchResults.appendChild(golferSearch(response[i]));
+      }
+
+    })
+  });
+
+
+  var allCourses = document.createElement('button');
+  allCourses.setAttribute('class', 'btn btn-primary');
+  allCourses.setAttribute('type', 'button');
+  allCourses.setAttribute('id', 'all-courses');
+  allCourses.textContent = 'View Golf Courses';
+
+  allCourses.addEventListener('click', function () {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/allGolfers');
+    xhr.send();
+
+    xhr.addEventListener('load', function () {
+      var response = JSON.parse(xhr.responseText);
+      var searchResults = document.getElementById('new-search');
+      clear(searchResults);
+      for (var i = 0; i < response.length; i++) {
+        searchResults.appendChild(golferSearch(response[i]));
+      }
+
+    })
+  });
+
   var container = document.createElement('div');
   container.setAttribute('class', 'panel panel-default');
+  container.setAttribute('id', 'container');
+  var containerHeader = document.createElement('div');
+  containerHeader.setAttribute('class', 'panel-heading text-center');
+  var containerBody = document.createElement('div');
+  containerBody.setAttribute('class', 'panel-body text-left');
+  var locationDiv = document.createElement('div');
+  locationDiv.textContent = 'Residence: ';
+  var genderDiv = document.createElement('div');
+  genderDiv.textContent = 'Gender: ';
+  var birthdayDiv = document.createElement('div');
+  birthdayDiv.textContent = 'Birth Date: ';
+  var skillDiv = document.createElement('div');
+  skillDiv.textContent = 'Skill Level: ';
+  var handicapDiv = document.createElement('div');
+  handicapDiv.textContent = 'Handicap: ';
+  var forename = document.createElement('span');
+  forename.setAttribute('id', 'space');
+  forename.textContent = data.firstName;
+  var surname = document.createElement('span');
+  surname.setAttribute('id', 'space')
+  surname.textContent = data.lastName;
+  var town = document.createElement('span');
+  town.textContent = data.city;
+  var comma = document.createElement('span');
+  comma.textContent = ', ';
+  var commaTwo = document.createElement('span');
+  commaTwo.textContent = ', ';
+  var region = document.createElement('span');
+  region.textContent = data.state;
+  var zipcode = document.createElement('span');
+  zipcode.textContent = data.zip;
+  var sex = document.createElement('span');
+  sex.textContent = data.gender;
+  var monthOfBirth = document.createElement('span');
+  monthOfBirth.textContent = data.birthMonth;
+  var buttonSpace = document.createElement('span');
+  buttonSpace.innerHTML = '&nbsp';
+  var space = document.createElement('span');
+  space.innerHTML = '&nbsp';
+  var spaceTwo = document.createElement('span');
+  spaceTwo.innerHTML = '&nbsp';
+  var spaceThree = document.createElement('span');
+  spaceThree.innerHTML = '&nbsp';
+  var dayOfBirth = document.createElement('span');
+  dayOfBirth.textContent = data.birthDay;
+  var yearOfBirth = document.createElement('span');
+  yearOfBirth.textContent = data.birthYear;
+  var competence = document.createElement('span');
+  competence.textContent = data.skill;
+  var golfHandicap = document.createElement('span');
+  golfHandicap.textContent = data.handicap;
+
+  nameDiv.appendChild(forename);
+  nameDiv.appendChild(space);
+  nameDiv.appendChild(surname);
+  locationDiv.appendChild(town);
+  locationDiv.appendChild(comma);
+  locationDiv.appendChild(region);
+  locationDiv.appendChild(spaceTwo);
+  locationDiv.appendChild(zipcode);
+  genderDiv.appendChild(sex);
+  birthdayDiv.appendChild(monthOfBirth);
+  birthdayDiv.appendChild(spaceThree);
+  birthdayDiv.appendChild(dayOfBirth);
+  birthdayDiv.appendChild(commaTwo);
+  birthdayDiv.appendChild(yearOfBirth);
+  skillDiv.appendChild(competence);
+  handicapDiv.appendChild(golfHandicap);
+  spanButton.appendChild(allGolfers);
+  spanButtonTwo.appendChild(allCourses);
+  buttonDiv.appendChild(spanButton);
+  buttonDiv.appendChild(buttonSpace);
+  buttonDiv.appendChild(spanButtonTwo);
+  containerHeader.appendChild(nameDiv);
+  containerBody.appendChild(locationDiv);
+  containerBody.appendChild(genderDiv);
+  containerBody.appendChild(birthdayDiv);
+  containerBody.appendChild(skillDiv);
+  containerBody.appendChild(handicapDiv);
+  containerBody.appendChild(buttonDiv);
+  container.appendChild(containerHeader);
+  container.appendChild(containerBody);
+  return container;
+};
+
+function golferSearch(data) {
+  var nameDiv = document.createElement('div');
+  var container = document.createElement('div');
+  container.setAttribute('class', 'panel panel-default');
+  container.setAttribute('id', 'container');
   var containerHeader = document.createElement('div');
   containerHeader.setAttribute('class', 'panel-heading text-center');
   var containerBody = document.createElement('div');
