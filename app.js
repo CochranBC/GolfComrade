@@ -84,16 +84,18 @@ app.post('/groups', function (req, res) {
 
   res.send(groups);
 
-})
+});
+
+app.get('/viewgroups', function (req, res) {
+  res.send(groups);
+});
 
 
 var groups = [
   {
     creator: 'bbarker@gmail.com',
     title: '49ers',
-    members: [
-      'asandler@gmail.com',
-    ],
+    members: [' Bob Barker', ' Adam Sandler'],
   },
 ]
 

@@ -119,11 +119,15 @@ var createButton = document.getElementById('create-button');
 
 createButton.addEventListener('click', function () {
   var groupTitle = document.getElementById('group-title');
-  var userEmail = document.getElementById('email')
+  var userEmail = document.getElementById('email');
+  var firstName = document.getElementById('first-name');
+  var lastName = document.getElementById('last-name');
+  console.log(firstName.textContent + ' ' + lastName.textContent);
+
   var newGroup = {
     title: groupTitle.value,
     creator: userEmail.textContent,
-    members: [userEmail.textContent]
+    members: [' ' + firstName.textContent + ' ' + lastName.textContent]
   };
 
   var xhr = new XMLHttpRequest();
@@ -164,6 +168,31 @@ function golferDisplay(data) {
   var nameDiv = document.createElement('div');
   var spanButton = document.createElement('span');
   var spanButtonTwo = document.createElement('span');
+  var groupDiv = document.createElement('div');
+  groupDiv.setAttribute('id', 'view-group');
+  var viewGroup = document.createElement('button');
+  viewGroup.setAttribute('class', 'btn btn-primary');
+  viewGroup.setAttribute('type', 'button');
+  viewGroup.setAttribute('id', 'golf-group');
+  viewGroup.textContent = 'View Golf Groups';
+
+  viewGroup.addEventListener('click', function () {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/viewgroups');
+    xhr.send();
+
+    xhr.addEventListener('load', function () {
+      var response = JSON.parse(xhr.responseText);
+      var searchResults = document.getElementById('new-search');
+      clear(searchResults);
+      for (var i = 0; i < response.length; i++) {
+        searchResults.appendChild(group(response[i]));
+      }
+
+    })
+  });
+
+
   var buttonDiv = document.createElement('div');
   buttonDiv.setAttribute('id', 'view-buttons')
   var allGolfers = document.createElement('button');
@@ -229,10 +258,12 @@ function golferDisplay(data) {
   var handicapDiv = document.createElement('div');
   handicapDiv.textContent = 'Handicap: ';
   var forename = document.createElement('span');
-  forename.setAttribute('id', 'space');
+  forename.setAttribute('class', 'h3');
+  forename.setAttribute('id', 'first-name');
   forename.textContent = data.firstName;
   var surname = document.createElement('span');
-  surname.setAttribute('id', 'space')
+  surname.setAttribute('class', 'h3');
+  surname.setAttribute('id', 'last-name');
   surname.textContent = data.lastName;
   var town = document.createElement('span');
   town.textContent = data.city;
@@ -300,6 +331,7 @@ function golferDisplay(data) {
   containerBody.appendChild(skillDiv);
   containerBody.appendChild(handicapDiv);
   containerBody.appendChild(buttonDiv);
+  containerBody.appendChild(viewGroup);
   container.appendChild(containerHeader);
   container.appendChild(containerBody);
   return container;
@@ -325,10 +357,10 @@ function golferSearch(data) {
   var handicapDiv = document.createElement('div');
   handicapDiv.textContent = 'Handicap: ';
   var forename = document.createElement('span');
-  forename.setAttribute('id', 'space');
+  forename.setAttribute('class', 'h3');
   forename.textContent = data.firstName;
   var surname = document.createElement('span');
-  surname.setAttribute('id', 'space')
+  surname.setAttribute('class', 'h3')
   surname.textContent = data.lastName;
   var town = document.createElement('span');
   town.textContent = data.city;
@@ -386,6 +418,28 @@ function golferSearch(data) {
   return container;
 };
 
+
+function group(data) {
+  var container = document.createElement('div');
+  container.setAttribute('class', 'panel panel-default');
+  container.setAttribute('id', 'container');
+  var containerHeader = document.createElement('div');
+  containerHeader.setAttribute('class', 'panel-heading text-center');
+  var containerBody = document.createElement('div');
+  containerBody.setAttribute('class', 'panel-body text-left');
+  var title = document.createElement('div');
+  title.textContent = data.title;
+  title.setAttribute('class', 'h3');
+  var members = document.createElement('div');
+  members.textContent = data.members;
+
+  containerHeader.appendChild(title);
+  containerBody.appendChild(members);
+
+  container.appendChild(containerHeader);
+  container.appendChild(containerBody);
+  return container;
+}
 
 
 
