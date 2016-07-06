@@ -78,6 +78,29 @@ app.post('/newGolfer', function (req, res) {
   res.send(newProfile);
 });
 
+app.post('/groups', function (req, res) {
+  var newGroup = {};
+  newGroup.creator = req.body.creator;
+  newGroup.title = req.body.title;
+  newGroup.members = req.body.members;
+  groups.push(newGroup);
+
+  res.send(groups);
+
+})
+
+
+var groups = [
+  {
+    creator: 'bbarker@gmail.com',
+    title: '49ers',
+    members: [
+      'asandler@gmail.com',
+    ],
+  },
+]
+
+
 var golfers = [
   {
     firstName: 'Bob',
