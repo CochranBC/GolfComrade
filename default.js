@@ -120,15 +120,16 @@ var createButton = document.getElementById('create-button');
 createButton.addEventListener('click', function () {
   var groupTitle = document.getElementById('group-title');
   var userEmail = document.getElementById('email')
-  var createGroup = {};
-  createGroup.title = groupTitle.value;
-  createGroup.creator = userEmail.textContent;
-  createGroup.members = [userEmail.textContent];
+  var newGroup = {
+    title: groupTitle.value,
+    creator: userEmail.textContent,
+    members: [userEmail.textContent]
+  };
 
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/groups');
   xhr.setRequestHeader('Content-type', 'application/json');
-  xhr.send(JSON.stringify(createGroup));
+  xhr.send(JSON.stringify(newGroup));
 
 
 })

@@ -8,6 +8,12 @@ It's a golf networking service for golfers who want to find new people to play w
 
   The user can view a list of golfers.
 
+  The user can view golf group
+
+  The user can add to golf group
+
+  The user can remove from golf group
+
   The user can add a star rating about another user.
 
   The user can view recommended golfers.
