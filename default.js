@@ -165,6 +165,7 @@ function golferDisplay(data) {
   var spanButton = document.createElement('span');
   var spanButtonTwo = document.createElement('span');
   var buttonDiv = document.createElement('div');
+  buttonDiv.setAttribute('id', 'view-buttons')
   var allGolfers = document.createElement('button');
   allGolfers.setAttribute('class', 'btn btn-primary');
   allGolfers.setAttribute('type', 'button');

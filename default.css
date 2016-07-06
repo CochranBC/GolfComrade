@@ -28,7 +28,10 @@
   margin-top: 35px;
 }
 #new-search {
-  margin-top: 50px;
+  margin-top: 40px;
+}
+#add-group {
+  margin-top: 35px;
 }
 #user-search {
   margin-top: 35px;
@@ -36,6 +39,6 @@
 #buttons {
   margin-left: 40px;
 }
-/*#all-courses {
-  margin-left: 10px;
-}*/
+#view-buttons {
+  margin-top: 10px;
+}
