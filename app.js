@@ -79,10 +79,7 @@ app.post('/newGolfer', function (req, res) {
 });
 
 app.post('/groups', function (req, res) {
-  var newGroup = {};
-  newGroup.creator = req.body.creator;
-  newGroup.title = req.body.title;
-  newGroup.members = req.body.members;
+  var newGroup = req.body;
   groups.push(newGroup);
 
   res.send(groups);

@@ -115,6 +115,24 @@ createUser.addEventListener('click', function() {
   })
 });
 
+var createButton = document.getElementById('create-button');
+
+createButton.addEventListener('click', function () {
+  var groupTitle = document.getElementById('group-title');
+  var userEmail = document.getElementById('email')
+  var createGroup = {};
+  createGroup.title = groupTitle.value;
+  createGroup.creator = userEmail.textContent;
+  createGroup.members = [userEmail.textContent];
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/groups');
+  xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.send(JSON.stringify(createGroup));
+
+
+})
+
 
 var searchButton = document.getElementById('search-button');
 
@@ -244,6 +262,11 @@ function golferDisplay(data) {
   competence.textContent = data.skill;
   var golfHandicap = document.createElement('span');
   golfHandicap.textContent = data.handicap;
+  var emailDiv = document.createElement('div');
+  emailDiv.textContent = 'Email: ';
+  var userEmail = document.createElement('span');
+  userEmail.setAttribute('id', 'email');
+  userEmail.textContent = data.email;
 
   nameDiv.appendChild(forename);
   nameDiv.appendChild(space);
@@ -254,6 +277,7 @@ function golferDisplay(data) {
   locationDiv.appendChild(spaceTwo);
   locationDiv.appendChild(zipcode);
   genderDiv.appendChild(sex);
+  emailDiv.appendChild(userEmail);
   birthdayDiv.appendChild(monthOfBirth);
   birthdayDiv.appendChild(spaceThree);
   birthdayDiv.appendChild(dayOfBirth);
@@ -267,6 +291,7 @@ function golferDisplay(data) {
   buttonDiv.appendChild(buttonSpace);
   buttonDiv.appendChild(spanButtonTwo);
   containerHeader.appendChild(nameDiv);
+  containerBody.appendChild(emailDiv);
   containerBody.appendChild(locationDiv);
   containerBody.appendChild(genderDiv);
   containerBody.appendChild(birthdayDiv);
@@ -358,6 +383,9 @@ function golferSearch(data) {
   container.appendChild(containerBody);
   return container;
 };
+
+
+
 
 function clear(area) {
   while(area.firstChild) {
