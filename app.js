@@ -2,6 +2,8 @@ var express = require('express');
 
 var app = express();
 
+var uuid = require('uuid');
+
 var bodyParser = require('body-parser');
 
 var jsonParser = bodyParser.json();
@@ -80,6 +82,7 @@ app.post('/newGolfer', function (req, res) {
 
 app.post('/groups', function (req, res) {
   var newGroup = req.body;
+  newGroup.id = uuid.v1();
   groups.push(newGroup);
 
   res.send(groups);
@@ -90,12 +93,29 @@ app.get('/viewgroups', function (req, res) {
   res.send(groups);
 });
 
+app.post('/addMember', function (req, res) {
+  //Group Id
+  var member = req.body.member;
+  var groupId = req.body.id;
+  var group = groups.find(function (group) {
+    return group.id === groupId
+  })
+  group.members.push(member);
+
+  res.send(groups);
+
+  //Member name
+
+})
+
+// var memberlist = members.join(', '); join array mdn
 
 var groups = [
   {
     creator: 'bbarker@gmail.com',
     title: '49ers',
     members: [' Bob Barker', ' Adam Sandler'],
+    id: '1111',
   },
 ]
 

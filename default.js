@@ -122,7 +122,6 @@ createButton.addEventListener('click', function () {
   var userEmail = document.getElementById('email');
   var firstName = document.getElementById('first-name');
   var lastName = document.getElementById('last-name');
-  console.log(firstName.textContent + ' ' + lastName.textContent);
 
   var newGroup = {
     title: groupTitle.value,
@@ -134,6 +133,11 @@ createButton.addEventListener('click', function () {
   xhr.open('POST', '/groups');
   xhr.setRequestHeader('Content-type', 'application/json');
   xhr.send(JSON.stringify(newGroup));
+
+  xhr.addEventListener('load', function () {
+    showGolfGroups(JSON.parse(xhr.responseText))
+    groupTitle.value = '';
+  });
 
 
 })
@@ -182,13 +186,7 @@ function golferDisplay(data) {
     xhr.send();
 
     xhr.addEventListener('load', function () {
-      var response = JSON.parse(xhr.responseText);
-      var searchResults = document.getElementById('new-search');
-      clear(searchResults);
-      for (var i = 0; i < response.length; i++) {
-        searchResults.appendChild(group(response[i]));
-      }
-
+      showGolfGroups(JSON.parse(xhr.responseText))
     })
   });
 
@@ -420,6 +418,8 @@ function golferSearch(data) {
 
 
 function group(data) {
+
+  // create the group details panel
   var container = document.createElement('div');
   container.setAttribute('class', 'panel panel-default');
   container.setAttribute('id', 'container');
@@ -430,17 +430,66 @@ function group(data) {
   var title = document.createElement('div');
   title.textContent = data.title;
   title.setAttribute('class', 'h3');
+
   var members = document.createElement('div');
-  members.textContent = data.members;
+
+  members.textContent = data.members.join(', ');
+
+  var firstName = document.getElementById('first-name').textContent;
+  var lastName = document.getElementById('last-name').textContent;
+  var fullName = firstName + ' ' + lastName;
 
   containerHeader.appendChild(title);
   containerBody.appendChild(members);
-
   container.appendChild(containerHeader);
   container.appendChild(containerBody);
-  return container;
-}
 
+  // handle joining a group
+
+  if (members.textContent.match(fullName)) {
+
+    return container;
+  }
+
+  var joinGroup = document.createElement('button');
+
+  joinGroup.setAttribute('class', 'btn btn-primary');
+  joinGroup.setAttribute('type', 'button');
+  joinGroup.setAttribute('id', 'add-member');
+  joinGroup.textContent = 'Join Group';
+
+  joinGroup.addEventListener('click', function () {
+
+    var groupId = data.id
+
+    var newMember = {
+      id: groupId,
+      member: fullName
+    };
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/addMember');
+    xhr.setRequestHeader('Content-type', 'application/json');
+    xhr.send(JSON.stringify(newMember));
+
+    xhr.addEventListener('load', function() {
+      showGolfGroups(JSON.parse(xhr.responseText))
+    });
+  })
+
+  containerBody.appendChild(joinGroup);
+
+  return container;
+};
+
+function showGolfGroups(groupData) {
+
+  var searchResults = document.getElementById('new-search');
+  clear(searchResults);
+  for (var i = 0; i < groupData.length; i++) {
+    searchResults.appendChild(group(groupData[i]));
+  }
+};
 
 
 function clear(area) {
