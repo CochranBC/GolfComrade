@@ -116,6 +116,10 @@ app.post('/removeMember', function (req, res) {
   })
   var start = group.members.indexOf(member);
   group.members.splice(start, 1);
+  if (group.members.length == 0) {
+    var newStart = groups.indexOf(group);
+    groups.splice(newStart, 1);
+  }
   res.send(groups);
 })
 
