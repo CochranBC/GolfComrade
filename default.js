@@ -427,7 +427,7 @@ function golferCourse(data) {
   containerBody.setAttribute('class', 'panel-body text-left');
   var locationDiv = document.createElement('div');
   locationDiv.textContent = 'Address: ';
-  var nameDiv = document.createElement('div');
+  var nameDiv = document.createElement('h3');
   nameDiv.textContent = data.name;
   var parDiv = document.createElement('div');
   parDiv.textContent = 'Par: ';
@@ -437,7 +437,7 @@ function golferCourse(data) {
   phoneDiv.textContent = 'Phone Number: ';
   var phoneSpan = document.createElement('span');
   phoneSpan.textContent = data.phone;
-  var addressDiv = document.createElement('span');
+  var addressDiv = document.createElement('div');
   addressDiv.textContent = data.address;
   addressTwoDiv = document.createElement('div');
   var town = document.createElement('span');
