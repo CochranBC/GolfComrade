@@ -224,7 +224,7 @@ function golferDisplay(data) {
 
   allCourses.addEventListener('click', function () {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/allGolfers');
+    xhr.open('POST', '/viewCourse');
     xhr.send();
 
     xhr.addEventListener('load', function () {
@@ -232,7 +232,7 @@ function golferDisplay(data) {
       var searchResults = document.getElementById('new-search');
       clear(searchResults);
       for (var i = 0; i < response.length; i++) {
-        searchResults.appendChild(golferSearch(response[i]));
+        searchResults.appendChild(golferCourse(response[i]));
       }
 
     })
@@ -414,6 +414,63 @@ function golferSearch(data) {
   container.appendChild(containerHeader);
   container.appendChild(containerBody);
   return container;
+};
+
+
+function golferCourse(data) {
+  var container = document.createElement('div');
+  container.setAttribute('class', 'panel panel-default');
+  container.setAttribute('id', 'container');
+  var containerHeader = document.createElement('div');
+  containerHeader.setAttribute('class', 'panel-heading text-center');
+  var containerBody = document.createElement('div');
+  containerBody.setAttribute('class', 'panel-body text-left');
+  var locationDiv = document.createElement('div');
+  locationDiv.textContent = 'Address: ';
+  var nameDiv = document.createElement('div');
+  nameDiv.textContent = data.name;
+  var parDiv = document.createElement('div');
+  parDiv.textContent = 'Par: ';
+  var par = document.createElement('span');
+  par.textContent = data.par;
+  var phoneDiv = document.createElement('div');
+  phoneDiv.textContent = 'Phone Number: ';
+  var phoneSpan = document.createElement('span');
+  phoneSpan.textContent = data.phone;
+  var addressDiv = document.createElement('span');
+  addressDiv.textContent = data.address;
+  addressTwoDiv = document.createElement('div');
+  var town = document.createElement('span');
+  town.textContent = data.city;
+  var comma = document.createElement('span');
+  comma.textContent = ', ';
+  var commaTwo = document.createElement('span');
+  commaTwo.textContent = ', ';
+  var region = document.createElement('span');
+  region.textContent = data.state;
+  var zipcode = document.createElement('span');
+  zipcode.textContent = data.zip;
+  var space = document.createElement('span');
+  space.innerHTML = '&nbsp';
+
+  locationDiv.appendChild(addressDiv);
+  addressTwoDiv.appendChild(town);
+  addressTwoDiv.appendChild(comma);
+  addressTwoDiv.appendChild(region);
+  addressTwoDiv.appendChild(space);
+  addressTwoDiv.appendChild(zipcode);
+  locationDiv.appendChild(addressTwoDiv);
+  parDiv.appendChild(par);
+  phoneDiv.appendChild(phoneSpan);
+  containerHeader.appendChild(nameDiv);
+  containerBody.appendChild(parDiv);
+  containerBody.appendChild(locationDiv);
+  containerBody.appendChild(phoneDiv);
+  container.appendChild(containerHeader);
+  container.appendChild(containerBody);
+
+  return container;
+
 };
 
 

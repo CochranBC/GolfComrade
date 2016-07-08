@@ -123,6 +123,10 @@ app.post('/removeMember', function (req, res) {
   res.send(groups);
 })
 
+app.post('/viewCourse', function (req, res) {
+  res.send(golfCourse);
+})
+
 // var memberlist = members.join(', '); join array mdn
 
 var groups = [
@@ -132,6 +136,18 @@ var groups = [
     members: ['Bob Barker', 'Adam Sandler'],
     id: '1111',
   },
+]
+
+var golfCourse = [
+  {
+    name: 'Rancho San Joaquin',
+    par: '5',
+    address: 'One Ethel Coplen Way',
+    city: 'Irvine',
+    state: 'CA',
+    zip: '92612',
+    phone: '949-786-5522',
+  }
 ]
 
 
