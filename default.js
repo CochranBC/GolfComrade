@@ -106,9 +106,7 @@ createUser.addEventListener('click', function() {
     var userPage = document.getElementById('user-page');
     var userProfile = document.getElementById('user-profile');
     var response = JSON.parse(xhr.responseText);
-    for (var i = 0; i < response.length; i++) {
-      userProfile.appendChild(golferDisplay(response[i]));
-    };
+    userProfile.appendChild(golferDisplay(response));
 
     swap('current', userPage, 'view');
 
@@ -183,6 +181,7 @@ function golferDisplay(data) {
   viewGroup.addEventListener('click', function () {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/viewgroups');
+    xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send();
 
     xhr.addEventListener('load', function () {
@@ -202,6 +201,7 @@ function golferDisplay(data) {
   allGolfers.addEventListener('click', function () {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/allGolfers');
+    xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send();
 
     xhr.addEventListener('load', function () {

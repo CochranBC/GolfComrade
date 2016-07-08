@@ -77,7 +77,7 @@ app.post('/newGolfer', function (req, res) {
       newProfile.push(user);
     }
   });
-  res.send(newProfile);
+  res.send(newProfile[0]);
 });
 
 app.post('/groups', function (req, res) {
@@ -114,7 +114,7 @@ var groups = [
   {
     creator: 'bbarker@gmail.com',
     title: '49ers',
-    members: [' Bob Barker', ' Adam Sandler'],
+    members: ['Bob Barker', 'Adam Sandler'],
     id: '1111',
   },
 ]
