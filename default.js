@@ -448,6 +448,33 @@ function group(data) {
 
   if (members.textContent.match(fullName)) {
 
+    var leaveGroup = document.createElement('button');
+
+    leaveGroup.setAttribute('class', 'btn btn-primary');
+    leaveGroup.setAttribute('type', 'button');
+    leaveGroup.setAttribute('id', 'remove-member');
+    leaveGroup.textContent = 'Leave Group';
+
+    leaveGroup.addEventListener('click', function () {
+      var groupId = data.id
+
+      var removeMember = {
+        id: groupId,
+        member: fullName
+      };
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/removeMember');
+      xhr.setRequestHeader('Content-type', 'application/json');
+      xhr.send(JSON.stringify(removeMember));
+
+      xhr.addEventListener('load', function() {
+        showGolfGroups(JSON.parse(xhr.responseText))
+      });
+
+    })
+    containerBody.appendChild(leaveGroup);
+
     return container;
   }
 

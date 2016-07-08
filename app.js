@@ -108,6 +108,17 @@ app.post('/addMember', function (req, res) {
 
 })
 
+app.post('/removeMember', function (req, res) {
+  var member = req.body.member;
+  var groupId = req.body.id;
+  var group = groups.find(function (group) {
+    return group.id === groupId
+  })
+  var start = group.members.indexOf(member);
+  group.members.splice(start, 1);
+  res.send(groups);
+})
+
 // var memberlist = members.join(', '); join array mdn
 
 var groups = [
