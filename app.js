@@ -104,7 +104,6 @@ app.post('/addMember', function (req, res) {
 
   res.send(groups);
 
-  //Member name
 
 })
 
@@ -127,7 +126,6 @@ app.post('/viewCourse', function (req, res) {
   res.send(golfCourse);
 })
 
-// var memberlist = members.join(', '); join array mdn
 
 var groups = [
   {
