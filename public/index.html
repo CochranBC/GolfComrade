@@ -4,8 +4,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta charset="UTF-8">
   <title>Golf Comrade</title>
-  <link rel="stylesheet" type="text/css" href="default.css">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+  <link rel="stylesheet" href="default.css" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 <body>
@@ -19,39 +19,29 @@
       </div>
     </div>
     <div class="row hide" id="user-page">
-      <div class="row">
-        <div id="user-profile" class="col-md-3">
-        </div>
-        <div id="user-search" class="col-md-5">
-          <form>
-            <div class="input-group">
-              <input class="form-control" id="term" type="search" name="search" placeholder="Search for other golfers by zip">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" id="search-button" type="button" value="search">Search</button>
-              </span>
-            </div>
-          </form>
-          <div id="new-search">
+      <div id="user-profile" class="col-md-3">
+      </div>
+      <div id="user-search" class="col-md-5">
+        <form>
+          <div class="input-group">
+            <input class="form-control" id="term" type="search" name="search" placeholder="Search for other golfers by zip">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" id="search-button" type="button" value="search">Search</button>
+            </span>
           </div>
-        </div>
-        <div class="col-md-3" id="add-group">
-          <form>
-            <div class="input-group">
-              <input class="form-control" id="group-title" type="search" name="create" placeholder="Group title">
-              <div class="input-group-btn">
-                <button class="btn btn-primary" id="create-button" type="button" value="create">Add Golf Group</button>
-              </div>
-            </div>
-          </form>
+        </form>
+        <div id="dashboard">
         </div>
       </div>
-      <div class="row hide" id="mailbox">
-        <div class="col-md-3">
-        </div>
-        <div id="mailbox" class="col-md-6">
-        </div>
-        <div class="col-md-3">
-        </div>
+      <div class="col-md-3" id="add-group">
+        <form>
+          <div class="input-group">
+            <input class="form-control" id="group-title" type="search" name="create" placeholder="Group title">
+            <div class="input-group-btn">
+              <button class="btn btn-primary" id="create-button" type="button" value="create">Add Golf Group</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
     <div class="row hide" id="login">
@@ -78,6 +68,8 @@
           <p>New User?</p>
           <a href="#" id="create-user">Click here</a>
           <span>to setup a new account.</span>
+        </div>
+      </div>
     </div>
     <div class="row hide" id="new-user">
       <div class="row" id="new-user-title">
@@ -272,7 +264,7 @@
             <div class="col-md-4">
             </div>
           </div>
-          <div class="col-md-offset-8">
+          <div class="col-md-offset-9">
             <button type="button" class="btn btn-primary active" id="create-account">CREATE ACCOUNT</button>
           </div>
         </form>
