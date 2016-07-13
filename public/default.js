@@ -39,6 +39,10 @@ loginButton.addEventListener('click', function() {
       userProfile.appendChild(golferDisplay(response[i]));
     };
     swap('current', userPage, 'view');
+    getAllGroups(function (groups) {
+      var groupsList = document.getElementById('groups-list');
+      showAllGroups(groupsList, groups)
+    })
   })
 });
 
@@ -131,6 +135,10 @@ searchButton.addEventListener('click', function() {
     };
   })
 });
+
+function golfGroups() {
+
+}
 
 function golferDisplay(data) {
   var nameDiv = document.createElement('div');
@@ -422,70 +430,26 @@ function golferCourse(data) {
 };
 
 function group(data) {
-  var container = document.createElement('div');
-  container.setAttribute('class', 'panel panel-default');
-  container.setAttribute('id', 'container');
-  var containerHeader = document.createElement('div');
-  containerHeader.setAttribute('class', 'panel-heading text-center');
-  var containerBody = document.createElement('div');
-  containerBody.setAttribute('class', 'panel-body text-left');
-  var title = document.createElement('div');
-  title.textContent = data.title;
-  title.setAttribute('class', 'h3');
-  var members = document.createElement('div');
-  members.textContent = data.members.join(', ');
-  var firstName = document.getElementById('first-name').textContent;
-  var lastName = document.getElementById('last-name').textContent;
-  var fullName = firstName + ' ' + lastName;
-  containerHeader.appendChild(title);
-  containerBody.appendChild(members);
-  container.appendChild(containerHeader);
-  container.appendChild(containerBody);
-  if (members.textContent.match(fullName)) {
-    var leaveGroup = document.createElement('button');
-    leaveGroup.setAttribute('class', 'btn btn-primary');
-    leaveGroup.setAttribute('type', 'button');
-    leaveGroup.setAttribute('id', 'remove-member');
-    leaveGroup.textContent = 'Leave Group';
-    leaveGroup.addEventListener('click', function () {
-      var groupId = data.id
-      var removeMember = {
-        id: groupId,
-        member: fullName
-      };
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', '/groups/removeMember');
-      xhr.setRequestHeader('Content-type', 'application/json');
-      xhr.send(JSON.stringify(removeMember));
-      xhr.addEventListener('load', function() {
-        showGolfGroups(JSON.parse(xhr.responseText))
-      });
-    })
-    containerBody.appendChild(leaveGroup);
-    return container;
-  }
-  var joinGroup = document.createElement('button');
-  joinGroup.setAttribute('class', 'btn btn-primary');
-  joinGroup.setAttribute('type', 'button');
-  joinGroup.setAttribute('id', 'add-member');
-  joinGroup.textContent = 'Join Group';
-  joinGroup.addEventListener('click', function () {
-    var groupId = data.id
-    var newMember = {
-      id: groupId,
-      member: fullName
-    };
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/groups/addMember');
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.send(JSON.stringify(newMember));
-    xhr.addEventListener('load', function() {
-      showGolfGroups(JSON.parse(xhr.responseText))
-    });
+  var item = element('li');
+  item.textContent = data.title;
+  return item;
+}
+
+function getAllGroups(callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/groups/view');
+  xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.send();
+  xhr.addEventListener('load', function () {
+    callback(JSON.parse(xhr.responseText))
   })
-  containerBody.appendChild(joinGroup);
-  return container;
 };
+
+function showAllGroups(target, groups) {
+  for (var i = 0; i < groups.length; i++) {
+    target.appendChild(group(groups[i]));
+  }
+}
 
 function showGolfGroups(groupData) {
   var searchResults = document.getElementById('dashboard');
@@ -510,3 +474,7 @@ function swap(current, next, location) {
   next.classList.add('current');
   next.classList.remove('hide');
 };
+
+function element(tagName) {
+  return document.createElement(tagName);
+}
