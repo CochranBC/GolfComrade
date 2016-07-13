@@ -430,9 +430,26 @@ function golferCourse(data) {
 };
 
 function group(data) {
-  var item = element('li');
-  item.textContent = data.title;
-  return item;
+  var groupPanel = element('li');
+  groupPanel.setAttribute('class', 'panel panel-default');
+  var groupFooter = element('div');
+  groupFooter.setAttribute('class', 'panel-footer');
+  groupFooter.textContent = data.title;
+  var groupHeader = element('div');
+  groupHeader.setAttribute('class', 'panel-heading');
+  groupHeader.textContent = data.members.length + '/' + data.capacity;
+  var groupBody = element('div');
+  groupBody.setAttribute('class', 'panel-body');
+  var img = element('img');
+  img.setAttribute('src', 'group_placeholder.png');
+
+  groupBody.appendChild(img);
+  groupPanel.appendChild(groupHeader);
+  groupPanel.appendChild(groupBody);
+  groupPanel.appendChild(groupFooter);
+
+
+  return groupPanel;
 }
 
 function getAllGroups(callback) {

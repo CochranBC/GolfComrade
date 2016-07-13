@@ -1,3 +1,10 @@
+#groups-list img {
+  max-width: 100%;
+}
+#groups-list li {
+  padding: 0;
+  width: 200px;
+}
 #login-title {
   margin-bottom: 60px;
 }

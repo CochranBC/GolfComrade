@@ -43,6 +43,7 @@ var group = [
     creator: 'bbarker@gmail.com',
     title: '49ers',
     members: ['Bob Barker', 'Adam Sandler'],
+    capacity: 4,
     id: '1111',
   },
 ]
