@@ -28,4 +28,8 @@ app.get('/group_placeholder.png', function (req, res) {
   res.sendFile(__dirname + '/public/group_placeholder.png');
 });
 
+app.get('/plus_placeholder.png', function (req, res) {
+  res.sendFile(__dirname + '/public/plus_placeholder.png');
+});
+
 app.listen(8080)

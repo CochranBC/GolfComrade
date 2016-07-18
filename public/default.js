@@ -10,7 +10,7 @@ for (var s = start; s <= end; s++) {
 
 };
 
-var homePage = document.getElementById('home');
+var homePage = document.getElementById('login');
 window.onload = swap('current', homePage, 'view')
 
 var createUser = document.getElementById('create-user');
@@ -46,11 +46,6 @@ loginButton.addEventListener('click', function() {
   })
 });
 
-var loginAccess = document.getElementById('login-access');
-loginAccess.addEventListener('click', function() {
-  var userLogin = document.getElementById('login');
-  swap('current', userLogin, 'view')
-});
 
 var createUser = document.getElementById('create-account');
 createUser.addEventListener('click', function() {
@@ -94,28 +89,6 @@ createUser.addEventListener('click', function() {
   })
 });
 
-var createButton = document.getElementById('create-button');
-createButton.addEventListener('click', function () {
-  var groupTitle = document.getElementById('group-title');
-  var userEmail = document.getElementById('email');
-  var firstName = document.getElementById('first-name');
-  var lastName = document.getElementById('last-name');
-  var newGroup = {
-    title: groupTitle.value,
-    creator: userEmail.textContent,
-    members: [' ' + firstName.textContent + ' ' + lastName.textContent]
-  };
-
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', '/groups/new');
-  xhr.setRequestHeader('Content-type', 'application/json');
-  xhr.send(JSON.stringify(newGroup));
-
-  xhr.addEventListener('load', function () {
-    showGolfGroups(JSON.parse(xhr.responseText))
-    groupTitle.value = '';
-  });
-})
 
 var searchButton = document.getElementById('search-button');
 searchButton.addEventListener('click', function() {
@@ -136,67 +109,56 @@ searchButton.addEventListener('click', function() {
   })
 });
 
+var allGolfers = document.getElementById('all-golfers');
+allGolfers.addEventListener('click', function () {
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/golfers/view');
+  xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.send();
+  xhr.addEventListener('load', function () {
+    var response = JSON.parse(xhr.responseText);
+    var searchResults = document.getElementById('dashboard');
+    clear(searchResults);
+    for (var i = 0; i < response.length; i++) {
+      searchResults.appendChild(golferSearch(response[i]));
+    }
+  })
+});
+
+var allCourses = document.getElementById('all-courses');
+allCourses.addEventListener('click', function () {
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/golfcourse/view');
+  xhr.send();
+  xhr.addEventListener('load', function () {
+    var response = JSON.parse(xhr.responseText);
+    var searchResults = document.getElementById('dashboard');
+    clear(searchResults);
+    for (var i = 0; i < response.length; i++) {
+      searchResults.appendChild(golferCourse(response[i]));
+    }
+  })
+});
+
+var viewGroup = document.getElementById('golf-group');
+viewGroup.addEventListener('click', function () {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/groups/view');
+  xhr.setRequestHeader('Content-type', 'application/json');
+  xhr.send();
+  xhr.addEventListener('load', function () {
+    showGolfGroups(JSON.parse(xhr.responseText))
+  })
+});
+
+
+
 function golfGroups() {
 
 }
 
 function golferDisplay(data) {
   var nameDiv = document.createElement('div');
-  var buttonDivThree = document.createElement('span');
-  var buttonDivTwo = document.createElement('div');
-  var viewGroup = document.createElement('button');
-  viewGroup.setAttribute('class', 'btn btn-primary');
-  viewGroup.setAttribute('type', 'button');
-  viewGroup.setAttribute('id', 'golf-group');
-  viewGroup.textContent = 'View Golf Groups';
-  viewGroup.addEventListener('click', function () {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/groups/view');
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.send();
-    xhr.addEventListener('load', function () {
-      showGolfGroups(JSON.parse(xhr.responseText))
-    })
-  });
-  var buttonDiv = document.createElement('div');
-  buttonDiv.setAttribute('id', 'view-buttons')
-  var allGolfers = document.createElement('button');
-  allGolfers.setAttribute('class', 'btn btn-primary');
-  allGolfers.setAttribute('type', 'button');
-  allGolfers.setAttribute('id', 'all-golfers');
-  allGolfers.textContent = 'View All Golfers';
-  allGolfers.addEventListener('click', function () {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/golfers/view');
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.send();
-    xhr.addEventListener('load', function () {
-      var response = JSON.parse(xhr.responseText);
-      var searchResults = document.getElementById('dashboard');
-      clear(searchResults);
-      for (var i = 0; i < response.length; i++) {
-        searchResults.appendChild(golferSearch(response[i]));
-      }
-    })
-  });
-  var allCourses = document.createElement('button');
-  allCourses.setAttribute('class', 'btn btn-primary');
-  allCourses.setAttribute('type', 'button');
-  allCourses.setAttribute('id', 'all-courses');
-  allCourses.textContent = 'View Golf Courses';
-  allCourses.addEventListener('click', function () {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/golfcourse/view');
-    xhr.send();
-    xhr.addEventListener('load', function () {
-      var response = JSON.parse(xhr.responseText);
-      var searchResults = document.getElementById('dashboard');
-      clear(searchResults);
-      for (var i = 0; i < response.length; i++) {
-        searchResults.appendChild(golferCourse(response[i]));
-      }
-    })
-  });
   var container = document.createElement('div');
   container.setAttribute('class', 'panel panel-default');
   container.setAttribute('id', 'container');
@@ -277,12 +239,6 @@ function golferDisplay(data) {
   birthdayDiv.appendChild(yearOfBirth);
   skillDiv.appendChild(competence);
   handicapDiv.appendChild(golfHandicap);
-  buttonDiv.appendChild(viewGroup);
-  buttonDivTwo.appendChild(allCourses);
-  buttonDivThree.appendChild(allGolfers);
-  buttonContainer.appendChild(buttonDiv);
-  buttonContainer.appendChild(buttonDivTwo);
-  buttonContainer.appendChild(buttonDivThree);
   containerHeader.appendChild(nameDiv);
   containerBody.appendChild(emailDiv);
   containerBody.appendChild(locationDiv);
@@ -290,7 +246,6 @@ function golferDisplay(data) {
   containerBody.appendChild(birthdayDiv);
   containerBody.appendChild(skillDiv);
   containerBody.appendChild(handicapDiv);
-  containerBody.appendChild(buttonContainer);
   container.appendChild(containerHeader);
   container.appendChild(containerBody);
   return container;
@@ -430,8 +385,9 @@ function golferCourse(data) {
 };
 
 function group(data) {
-  var groupPanel = element('li');
-  groupPanel.setAttribute('class', 'panel panel-default');
+  var groupItem = element('div');
+  var groupPanel = element('div');
+  groupPanel.setAttribute('class', 'col-md-2 col-xs-2 panel panel-default');
   var groupFooter = element('div');
   groupFooter.setAttribute('class', 'panel-footer');
   groupFooter.textContent = data.title;
@@ -447,9 +403,9 @@ function group(data) {
   groupPanel.appendChild(groupHeader);
   groupPanel.appendChild(groupBody);
   groupPanel.appendChild(groupFooter);
+  groupItem.appendChild(groupPanel);
 
-
-  return groupPanel;
+  return groupItem;
 }
 
 function getAllGroups(callback) {

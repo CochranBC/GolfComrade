@@ -44,7 +44,18 @@ var group = [
     title: '49ers',
     members: ['Bob Barker', 'Adam Sandler'],
     capacity: 4,
+    location: 'Irvine, CA',
+    date: '07/13/16',
     id: '1111',
+  },
+  {
+    creator: 'bcochran@gmail.com',
+    title: 'Golf Club',
+    members: ['Brian Cochran', 'Adam Sandler', 'Bob Barker'],
+    capacity: 4,
+    location: 'Irvine, CA',
+    date: '07/13/16',
+    id: '2222',
   },
 ]
 
