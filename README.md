@@ -1,5 +1,5 @@
 # GolfComrade :golf:
-> a golf networking service for golfers who want to find new people to play with
+> a networking service for golfers who want to find new people to play with.
 
 ## Home Page
 ![golf-comrade-home-page](https://cloud.githubusercontent.com/assets/19395858/16741967/973e2b70-475a-11e6-94aa-c86632ac49cc.png)
